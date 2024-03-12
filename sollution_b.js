@@ -1,4 +1,26 @@
 /**
+ * ## 문제 B
+ *
+ * <준비>
+ * 1. npm run dev 로 개발서버를 실행합니다.
+ * 2. http://localhost:8000/chapters/chapter1/b.html 로 접속하면 UI를 확인할 수 있어요.
+ * 3. 버튼을 클릭 했을 때, 로딩이 멈추는 것을 볼 수 있습니다.
+ *
+ * <목표>
+ * "b.js"의 [HardWork] 클래스의 do() 메서드를 개선하여
+ * 버튼을 클릭 했을 때, 로딩이 멈추지 않도록 합니다.
+ * 그리고 순차적으로 연산되는 결과가 지속적으로 화면에 노출됩니다.
+ *
+ * <조건>
+ * 1. 정의된 메서드 중 do() 메서드만 수정가능 합니다. (추가적인 메서드를 정의하는 것도 가능)
+ * 2. async/await 문법을 사용할 수 없습니다.
+ * 3. task가 순차적으로 실행되어야 합니다. (반드시 이전 task가 완료되고 다음 task가 실행)
+ *
+ * <제출물>
+ * 1. 코드를 확인할 수 있는 링크 또는 코드 캡쳐 이미지
+ */
+
+/**
  * @description
  * 고비용 연산을 하는 모듈입니다.
  * 삼만개의 _task를 순차적으로 연산합니다.
@@ -11,15 +33,17 @@ class HardWork {
 
   do() {
     let i = 0;
+    const numberExecutedAtOnce = 5;
+    const intervalDelayTimeInMs = 50;
     let timer = setInterval(() => {
-      for (let index = 0; index <= 5; index++) {
+      for (let index = 0; index <= numberExecutedAtOnce; index++) {
         if (i >= this._tasks.length) {
           clearInterval(timer);
           return;
         }
         this._tasks[i++]();
       }
-    }, 50);
+    }, intervalDelayTimeInMs);
   }
 
   // do() 이외의 메서드는 수정하지마세요
@@ -110,3 +134,4 @@ async function main() {
 }
 
 main();
+//- 수정하지마세요
