@@ -17,8 +17,7 @@ class HardWork {
           clearInterval(timer);
           return;
         }
-        this._tasks[i]();
-        i++;
+        this._tasks[i++]();
       }
     }, 50);
   }
